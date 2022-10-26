@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useContext} from 'react';
 import {
   SafeAreaView,
   View,
@@ -7,37 +7,11 @@ import {
   Pressable,
   StyleSheet,
 } from 'react-native';
+import {NavigationContext} from '@react-navigation/native';
 
 import {Back} from '../components/Icons';
 import {Button} from '../components';
 import {CustomInput} from './EmailVerification';
-
-type CustomProps = {
-  value: string;
-  setValue: React.Dispatch<React.SetStateAction<string>>;
-};
-
-// function CustomInput({value, setValue}: CustomProps) {
-//   const [active, setActive] = useState<Boolean>(false);
-//   return (
-//     <View>
-//       <TextInput
-//         maxLength={1}
-//         style={[
-//           styles.customInputBox,
-//           {
-//             borderWidth: active ? 2 : 1,
-//             borderColor: active ? '#cfcfcf' : '#dedede',
-//           },
-//         ]}
-//         value={value}
-//         onChangeText={setValue}
-//         onFocus={() => setActive(true)}
-//         onBlur={() => setActive(false)}
-//       />
-//     </View>
-//   );
-// }
 
 export default function ForgotPasswordVerification() {
   const [boxOne, setBoxOne] = useState('');
@@ -47,11 +21,18 @@ export default function ForgotPasswordVerification() {
   const [boxFive, setBoxFive] = useState('');
   const [boxSix, setBoxSix] = useState('');
 
+  const navigation = useContext(NavigationContext);
+
+  const submitCodeHandler = () => {
+    // verify code
+    navigation?.navigate('Reset-Password');
+  };
+
   return (
     <SafeAreaView style={styles.container}>
-      <Back onPress={() => console.log('Go Back')} />
+      <Back onPress={() => navigation?.goBack()} />
       <View style={{marginTop: 20}}>
-        <Text style={{fontSize: 15}}>
+        <Text style={{fontSize: 15, color: '#000000'}}>
           Input code sent to your email address
         </Text>
       </View>
@@ -68,16 +49,17 @@ export default function ForgotPasswordVerification() {
         onPress={() => {
           console.log('Resend Code');
         }}>
-        <Text style={{textAlign: 'right', fontSize: 15, fontWeight: '500'}}>
+        <Text
+          style={{
+            textAlign: 'right',
+            fontSize: 15,
+            fontWeight: '500',
+            color: '#000000',
+          }}>
           Resend Code
         </Text>
       </Pressable>
-      <Button
-        title="Submit"
-        onPressHandler={() => {
-          console.log('Forgot Password Verification Code Submit');
-        }}
-      />
+      <Button title="Submit" onPressHandler={submitCodeHandler} />
     </SafeAreaView>
   );
 }

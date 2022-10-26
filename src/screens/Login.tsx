@@ -17,6 +17,12 @@ export default function Login() {
 
   const navigation = useContext(NavigationContext);
 
+  const handleLogin = () => {
+    // login user
+    // store user token in asyncstorage for successful authentication
+    console.log('User Login');
+  };
+
   return (
     <SafeAreaView style={styles.container}>
       <View></View>
@@ -40,16 +46,17 @@ export default function Login() {
             )
           }
         />
-        <Button
-          title="Login"
-          onPressHandler={() => {
-            console.log('Login click handler');
-          }}
-        />
+        <Button title="Login" onPressHandler={handleLogin} />
         <Pressable
           style={{marginTop: 10}}
           onPress={() => navigation?.navigate('Forgot-Password')}>
-          <Text style={{textAlign: 'right', fontSize: 16, fontWeight: '500'}}>
+          <Text
+            style={{
+              textAlign: 'right',
+              fontSize: 15,
+              fontWeight: '500',
+              color: '#000000',
+            }}>
             Forgot Password?
           </Text>
         </Pressable>
@@ -61,11 +68,13 @@ export default function Login() {
             justifyContent: 'center',
             alignItems: 'center',
           }}>
-          <Text style={{fontSize: 15}}>Don't have an account?</Text>
+          <Text style={{fontSize: 15, color: '#000000'}}>
+            Don't have an account?
+          </Text>
           <Pressable
             style={{marginLeft: 5}}
             onPress={() => navigation?.navigate('Register')}>
-            <Text style={{fontSize: 15, color: 'gray', fontWeight: '500'}}>
+            <Text style={{fontSize: 15, color: '#000000', fontWeight: '500'}}>
               SignUp Now!
             </Text>
           </Pressable>

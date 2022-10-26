@@ -1,5 +1,6 @@
-import React, {useState} from 'react';
+import React, {useState, useContext} from 'react';
 import {SafeAreaView, View, Text, StyleSheet, Pressable} from 'react-native';
+import {NavigationContext} from '@react-navigation/native';
 
 import {InputBox, Button} from '../components';
 import {ShowPassword, HidePassword, Lock, Envelope} from '../components/Icons';
@@ -18,6 +19,13 @@ export default function Register() {
 
   const toggleShowCPassword = () => {
     setShowCPassword(!showCPassword);
+  };
+
+  const navigation = useContext(NavigationContext);
+
+  const handleRegistration = () => {
+    // register user
+    navigation?.navigate('Email-Verification');
   };
 
   return (
@@ -56,12 +64,7 @@ export default function Register() {
             )
           }
         />
-        <Button
-          title="Register"
-          onPressHandler={() => {
-            console.log('Register click handler');
-          }}
-        />
+        <Button title="Register" onPressHandler={handleRegistration} />
         <View
           style={{
             marginTop: 20,
@@ -70,9 +73,18 @@ export default function Register() {
             justifyContent: 'center',
             alignItems: 'center',
           }}>
-          <Text style={{fontSize: 15}}>Already have an account?</Text>
-          <Pressable style={{marginLeft: 5}}>
-            <Text style={{fontSize: 15, color: 'gray', fontWeight: '500'}}>
+          <Text style={{fontSize: 15, color: '#000000'}}>
+            Already have an account?
+          </Text>
+          <Pressable
+            style={{marginLeft: 5}}
+            onPress={() => navigation?.navigate('Login')}>
+            <Text
+              style={{
+                fontSize: 15,
+                color: '#000000',
+                fontWeight: '500',
+              }}>
               Login!
             </Text>
           </Pressable>

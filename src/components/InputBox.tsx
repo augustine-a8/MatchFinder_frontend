@@ -27,8 +27,8 @@ const InputBox = ({
         style={[
           styles.formInputBox,
           {
-            borderWidth: active ? 2 : 1,
-            borderColor: active ? '#cfcfcf' : '#dedede',
+            borderWidth: 1.5,
+            borderColor: active ? '#000000' : '#dedede',
           },
         ]}>
         {leftIcon}
@@ -52,6 +52,7 @@ const styles = StyleSheet.create({
   },
   formLabel: {
     marginVertical: 3,
+    color: '#000000',
   },
   formInputBox: {
     borderRadius: 5,
@@ -59,6 +60,7 @@ const styles = StyleSheet.create({
     display: 'flex',
     flexDirection: 'row',
     alignItems: 'center',
+    color: '#000000',
   },
 });
 

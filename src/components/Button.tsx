@@ -17,10 +17,10 @@ export default function Button({title, onPressHandler}: ButtonProps) {
 const styles = StyleSheet.create({
   button: {
     width: '100%',
-    backgroundColor: '#dedede',
+    backgroundColor: '#000000',
     padding: 15,
     borderRadius: 5,
     marginTop: 20,
   },
-  title: {color: 'black', textAlign: 'center'},
+  title: {color: '#ffffff', textAlign: 'center'},
 });

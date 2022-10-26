@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useContext} from 'react';
 import {
   SafeAreaView,
   View,
@@ -7,6 +7,7 @@ import {
   Pressable,
   StyleSheet,
 } from 'react-native';
+import {NavigationContext} from '@react-navigation/native';
 
 import {Back} from '../components/Icons';
 import {Button} from '../components';
@@ -25,8 +26,8 @@ export function CustomInput({value, setValue}: CustomProps) {
         style={[
           styles.customInputBox,
           {
-            borderWidth: active ? 2 : 1,
-            borderColor: active ? '#cfcfcf' : '#dedede',
+            borderWidth: 1.5,
+            borderColor: active ? '#000000' : '#dedede',
           },
         ]}
         value={value}
@@ -46,11 +47,19 @@ export default function EmailVerification() {
   const [boxFive, setBoxFive] = useState('');
   const [boxSix, setBoxSix] = useState('');
 
+  const navigation = useContext(NavigationContext);
+
+  const submitCode = () => {
+    // verify email verification code
+    // store usertoken in asyncstorage for successful authentication
+    console.log('Submit code');
+  };
+
   return (
     <SafeAreaView style={styles.container}>
-      <Back onPress={() => console.log('Go Back')} />
+      <Back onPress={() => navigation?.goBack()} />
       <View style={{marginTop: 20}}>
-        <Text style={{fontSize: 15}}>
+        <Text style={{fontSize: 15, color: '#000000'}}>
           Input code sent to your email address
         </Text>
       </View>
@@ -67,16 +76,17 @@ export default function EmailVerification() {
         onPress={() => {
           console.log('Resend Code');
         }}>
-        <Text style={{textAlign: 'right', fontSize: 15, fontWeight: '500'}}>
+        <Text
+          style={{
+            textAlign: 'right',
+            fontSize: 15,
+            fontWeight: '500',
+            color: '#000000',
+          }}>
           Resend Code
         </Text>
       </Pressable>
-      <Button
-        title="Submit"
-        onPressHandler={() => {
-          console.log('Email Verification Code Submit');
-        }}
-      />
+      <Button title="Submit" onPressHandler={submitCode} />
     </SafeAreaView>
   );
 }

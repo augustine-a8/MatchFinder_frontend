@@ -1,5 +1,5 @@
 import React, {useContext, useState} from 'react';
-import {SafeAreaView, StyleSheet, View} from 'react-native';
+import {SafeAreaView, StyleSheet, View, Text} from 'react-native';
 import {NavigationContext} from '@react-navigation/native';
 
 import {InputBox, Button} from '../components';
@@ -13,7 +13,7 @@ export default function ResetPassword() {
 
   const resetPasswordHandler = () => {
     // reset user's password
-    navigation?.navigate('Login');
+    navigation?.navigate('Login', {replace: true});
   };
 
   return (
@@ -23,6 +23,14 @@ export default function ResetPassword() {
           navigation?.goBack();
         }}
       />
+      <Text
+        style={{
+          fontSize: 22,
+          marginTop: 10,
+          color: '#000000',
+        }}>
+        Reset Your Password
+      </Text>
       <View>
         <InputBox
           placeholder="New Password"

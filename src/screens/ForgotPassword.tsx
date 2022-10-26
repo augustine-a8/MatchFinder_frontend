@@ -18,7 +18,7 @@ export default function ForgotPassword() {
 
   const loginHandler = () => {
     // submit email to send code to
-    navigation?.navigate('Reset-Password');
+    navigation?.navigate('Forgot-Password-Verification');
   };
 
   return (
@@ -26,7 +26,9 @@ export default function ForgotPassword() {
       <Back onPress={() => navigation?.goBack()} />
       <View></View>
       <View style={{marginTop: 20}}>
-        <Text style={{fontSize: 22}}>Forgot Password?</Text>
+        <Text style={{fontSize: 22, marginBottom: 10, color: '#000000'}}>
+          Forgot Password?
+        </Text>
         <InputBox
           title="Enter Your Email Address"
           placeholder="Email"
